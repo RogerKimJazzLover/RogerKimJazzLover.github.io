@@ -23,9 +23,7 @@ Welcome! I am Roger Kim, a computer science student at Hanyang University in Seo
   <img src="/assets/img/toyki-homepage.png" width="100%" />
 </p>
 
-[TOYKI](https://toyki-homepage.vercel.app/) is a service that provides opportunities to overcome the limitations of offline human relationships and enables everyone to build social networks more easily. It is currently under development, and I am developing Backend API. Learn more about [TOYKI](https://toyki-homepage.vercel.app/) here:
-
-https://toyki-homepage.vercel.app/
+[TOYKI](https://toyki-homepage.vercel.app/) is a service that provides opportunities to overcome the limitations of offline human relationships and enables everyone to build social networks more easily. It is currently under development, and I am developing Backend API. Learn more about [TOYKI](https://toyki-homepage.vercel.app/) here (Or just click the blue TOYKI text): https://toyki-homepage.vercel.app/
 
 
 **Tech Stack**
