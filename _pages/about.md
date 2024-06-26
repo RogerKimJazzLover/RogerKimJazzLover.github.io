@@ -35,8 +35,8 @@ Welcome! I am Roger Kim, a computer science student at Hanyang University in Seo
 
 ## Web-application(Full) - cmpnyinfo
 <p float="left">
-  <img src="/assets/img/cmpnyinfo_portfolio_detail_eng.png" width="45%" />
-  <img src="/assets/img/cmpnyinfo_portfolio_main.png" width="44%" /> 
+  <img src="/assets/img/cmpnyinfo_portfolio_detail_eng.png" width="49%" />
+  <img src="/assets/img/cmpnyinfo_portfolio_main.png" width="50%" /> 
 </p>
 This is a simple website that analyses the financial statements of corporations registered in Korean Composite Stock Price Indexes(KOSPI). It provides ***essential analytical data*** and ***visual representation*** using variouse types of graphs.
 
