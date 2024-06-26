@@ -7,17 +7,35 @@ sidebar_main: true
 ---
 # Roger Kim
 
-Hi! I am Roger Kim, a computer science student at Hanyang University located in Seoul, South Korea. With expertise in Python, C, C++, and C#, I am now working as a freelance web developmer, mainly using Django as my main framework. Additionally, I have a basic understanding of networking fundamentals and is proficient in various DevOps tools, such as Docker, AWS ECS, Git, and GitHub.
+Welcome! I am Roger Kim, a computer science student at Hanyang University in Seoul, South Korea. With expertise in Python and experience in C, C++, and C#, I am now aiming to work as a freelance web developer, using Django as my framework. Additionally, I have a thorough understanding of networking fundamentals and is proficient in various DevOps tools, such as Docker, AWS ECS, Git, and GitHub.
 
 ## My key skills
 - Back-end development with ***django***
+- REST API with ***DRF(Django Rest Framework)***
 - Containerization with ***docker***
-- Data Analysis&Manipulation with ***python***
-- Deploying with various ***AWS*** tools(ECS, ECR, EC2, CloudWatch)
-- Designing Software (Software Architecture)
+- Data Manipulation with ***python***
+- Deploying with various ***AWS*** tools(Elastic Containers, RDS, VPC, etc.)
+- Designing Software
 
 ## Projects
-## Web-application - cmpnyinfo
+## Web-application(Backend) - TOYKI (Developing)
+<p float="left">
+  <img src="/assets/img/toyki-homepage.png" width="100%" />
+</p>
+
+[TOYKI](https://toyki-homepage.vercel.app/) is a service that provides opportunities to overcome the limitations of offline human relationships and enables everyone to build social networks more easily. It is currently under development, and I am developing Backend API. Learn more about [TOYKI](https://toyki-homepage.vercel.app/) here:
+
+https://toyki-homepage.vercel.app/
+
+
+**Tech Stack**
+- React
+- **DRF** for REST API
+- **Docker** for containerization
+- **ECS** for deployment
+- **PostgreSQL** with **RDS** for DB
+
+## Web-application(Full) - cmpnyinfo
 <p float="left">
   <img src="/assets/img/cmpnyinfo_portfolio_detail_eng.png" width="45%" />
   <img src="/assets/img/cmpnyinfo_portfolio_main.png" width="44%" /> 
@@ -27,8 +45,8 @@ This is a simple website that analyses the financial statements of corporations 
 **Tech Stack**
 - pure html&css for front
 - **django** for back
-- **docker** for containerization
-- **ecs** for deployment
+- **Docker** for containerization
+- **ECS** for deployment
 
 ## OpenSource - NAVER Shopping Insight
 <p float="left">
