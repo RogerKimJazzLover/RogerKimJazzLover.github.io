@@ -41,11 +41,9 @@ _AmazonS3ReadOnlyAccess, JSON_
 You can see all the ***actions*** that this ***policy*** is going to allow, in the **Action** array. This particular policy allows the **user** or the **role** to perform all "Get", "List", and "Describe" actions on AWS S3 and S3 Object Lambda resources
 
 ## User Groups & Users
-Now you have to decied who gets to do what. In other words, what policies are you going to attach to different ***user groups***? For example, you may create a ***user group*** called _'admin,'_ who gets to do everything. And you register all the ***users***, like yourself, your co-worker and so on. You can also create a ***user group*** named _'developers'_ which doesn't have the permissions to create or delete resources.
+Now you have to decied who gets to do what. _In other words, what policies are you going to attach to different ***user groups***?_ 
 
-<p float="left">
-  <img src="/assets/img/aws-user-group.png" width="50%" height="300px" />
-</p>
+For example, you may create a ***user group*** called _'admin,'_ who gets to do everything. And you register all the ***users***, like yourself, your co-worker and so on. You can also create a ***user group*** named _'developers'_ which doesn't have the permissions to create or delete resources.
 
 ![](/assets/img/aws-user-group-sum-up.png)
 
