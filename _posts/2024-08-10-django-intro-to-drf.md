@@ -49,15 +49,11 @@ The most bascic feature of DRF is functional views with the `api_view` decorator
 - For action based APIs, functional views are often used. 
 - For object-based APIs, ***classed-based views*** are used, which will be discussed in the next section.
 
-<div style="background-color: rgb(50, 50, 50);">
-
 ```python
 @api_view(['GET'])
 def health(request):
     return Response({"status":"All Good"}, status=status.HTTP_200_OK) 
 ```
-
-</div>
 
 This code shows some of the basic features of DRF. The `api_view` decorator, the `Response` module and the `status` module.
 - `api_view` decorator
@@ -85,7 +81,6 @@ On top of that, in order fully integrate class-based views, you msut know ***ser
 So in this post, I am only going to expalin the elements of class-based views and not serializers. 
 
 ### Here's a **dumy-code** that well-displays how class-based views can be used for CRUD operations.
-<div style="background-color: rgb(50, 50, 50);">
 
 ```python
 # additional module
@@ -148,8 +143,6 @@ urlpatterns = [
     ...
 ]
 ```
-
-</div>
 
 - This piece of dummy code show how you can use class-based views to perform CRUD on a certian ***queryset*** using different http methods.
 - So **the function names matters.** `get` function would handle `get` requests, and so on. But you can also always add you own functions into the class with a different name, that you can use for other purposes than handling user requests.
