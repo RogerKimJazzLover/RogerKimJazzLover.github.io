@@ -20,7 +20,6 @@ class UserProfile(models.Model):
                            editable=False, unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, 
                              related_name='profiles')
-    profile_pic = models.ImageField(null=True)
 
     profile_name = models.CharField(null=True, max_length=30)
 
@@ -31,13 +30,10 @@ class UserProfile(models.Model):
     job_description = models.CharField(null=True, max_length=155)
 
     # and perhaps some more fields
-
-    def __str__(self):
-        return f'{self.user.email} - Profile'
 ```
 Now imagine creating an instance of that in views.py using the data from the request. It would look something like this
 ```python
-# !! ASSUMING YOU ALREADY HAVE A 'user' object
+# ASSUMING YOU ALREADY HAVE A 'user' object
 post_data = request.data
 try:
     profile_name = post_data['profile_name']
@@ -49,14 +45,16 @@ except KeyError:
     # handling error in case the post data doesn't contain certain values
 
 # manually creating an instance
-instance = UserProfile.create(user=user, email = email, 
-                            profile_name = profile_name 
-                            ...
-                            )
+instance = UserProfile(user=user, email=email, 
+                        profile_name=profile_name 
+                        ...
+                        )
+instance.save()
 ```
 This already looks repetitive, and an error can easily occur. **This is NOT what we want**. Which is exactlly what serializers are for.
 
 With serializer, the code would looke like this. The serializer would help convert the python's datatypes into a complex model instance.
+
 ```python
 # with serializer
 instance = UserProfileSerializer(data=request.data)
@@ -65,15 +63,15 @@ if instance.is_valid():
 ```
 
 ## Setting Up
-1. Create a `serializers.py` file
-2. Creating a serializer component
+1. Create a `serializers.py` file inside your app directory, not the project directory. e.x: `myproject/myapp/.`
+2. Create a serializer component. The following is an example serialzer for the UserProfile model above.
     ```python
     # import the necessary modules
     from rest_framework import serializers
     from .models import UserProfile
 
     class UserProfileSerializer(serializers.ModelSerializer):
-        # you can set read only fields as well
+        # you can set certain fields as read only as well
         uid = serializers.UUIDField(read_only=True)
         name = serializers.SerializerMethodField(read_only=True)
         gender = serializers.SerializerMethodField(read_only=True)
@@ -82,6 +80,7 @@ if instance.is_valid():
         # defining the fields that the serializer is going to include
         class Meta:
             model = UserProfile
+            # define the depth of relationships
             depth = 1
             fields = [   
                 "uid", 
@@ -99,6 +98,8 @@ if instance.is_valid():
             ]
 
         def get_name(self, obj):
+            # the serializer would traverse the relationship 
+            # to query these data
             return obj.user.name
         def get_age(self, obj):
             return obj.user.age
@@ -111,14 +112,62 @@ if instance.is_valid():
     `fields`
     - a list of strings that indicates which fields is included in this serializer
 
-    the `get_{field name}` functions
+     `get_{field name}` functions
     - some data's cannot be directly queried, or you may want to customize the values of some fields.
-    - that is when you use the functions starting with `get`. So for example, the `get_name` function in the code above reads the `name` field from the user instance that is set as foreign key to the UserProfile model, and allow us to easily access it just via serialzer
+    - that is when you use the functions starting with `get`. So for example, the `get_name` function in the code above reads the `name` field from the user instance that is set as foreign key to the UserProfile model, and allow us to easily access it via serialzer
 
 ## How to use
-### Python Datatype -> Complex Data
-### Complex Data -> Python Datatype
+### Turning Complex Data -> Python Datatype
+Let's say that you want to return the user's profile data as a response. You can use the serializer to turn the instance of an model into a dictionary, then return it using `Response`.
+```python
+profile = UserProfile.objects.get(uid=uid)
+serializer = UserProfileSerializer(profile)
+return Response(serializer.data)
+```
+It's that easy. It automatically converts the model instance into a dictionary, then you return that dictionary using `Response` whcih will returned the data in json format. Like below
+```json
+{
+  "uid": "9e168432-6522-4461-aa1f-39251d7daeb5",
+  "profile_name": "asdf",
+  "name": "asdf",
+  "gender": "asdf",
+  "age": 100,
+  ...  
+  ...
+}
+```
 
+### Turning Python Datatype -> Complex Data
+Now let's turn python datatype into complex datatypes, in many cases, serializer instance itself. I explained it earlier in this post. But let's look at it in more detail.
+```python
+instance = UserProfileSerializer(data=request.data)
+if instance.is_valid():
+    instance.save(user=user)
+```
+In this case, the `request.data` instance is not a built-in python datatype like dictionary. However, you can turn a dictionary into a model instance in the exact same way.
+```python
+data = {
+    "profile_name": "asdf",
+    "bio": "asdf"
+    ...
+    ...
+}
+
+serializer = UserProfileSerializer(data=data)
+if serializer.is_valid():
+    user_profile = serializer.save()
+```
+
+### Other Uses
+You can also use serializer for other uses, like updating an instance.
+```python
+# querying the outdated profile
+profile = UserProfile.objects.get(uid=uid)
+serializer = UserProfileSerializer(profile, data=request.data)
+if serializer.is_valid():
+    # changing the old data with the new data
+    serializer.update(instance=profile, validated_data=request.data)
+```
 
 ## Contact Me:
 Roger Kim
